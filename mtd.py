@@ -12,11 +12,7 @@ from sqlalchemy import exc
 Тут лежат модели и единожды генерируется база данных из Json-файлов
 """
 
-app = Flask(__name__)
-#app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///dtb.db"
-#app.config['DEBUG'] = True
-# app.register_blueprint(main_blueprint)
-db = SQLAlchemy(app)
+db = SQLAlchemy()
 
 
 class User(db.Model):
@@ -89,45 +85,4 @@ class Offer(db.Model):
                 "executor_id": self.executor_id}
 
 db.create_all()
-"""
-Заполнение таблиц данными из json файлов
-"""
-with open('users.json', 'r', encoding='utf8') as file:
-#    print(file)
-    users = json.load(file)
-#    print(users)
-    for user in users:
-#        print(user)
-        current_user = User(**user)
-#        print(current_user)
-        db.session.add(current_user)
-    try:
-        db.session.commit()
-    except exc.IntegrityError:
-        print(f"INFO: Table already initialized and filled")
 
-
-with open('orders.json', 'r', encoding='utf8') as file:
-    orders = json.load(file)
-    for order in orders:
-        current_order = Order(**order)
-        db.session.add(current_order)
-    try:
-        db.session.commit()
-    except exc.IntegrityError:
-        print(f"INFO: Table already initialized and filled")
-
-
-with open('offers.json', 'r', encoding='utf8') as file:
-    offers = json.load(file)
-    for offer in offers:
-        current_offer = Offer(**offer)
-        db.session.add(current_offer)
-    try:
-        db.session.commit()
-    except exc.IntegrityError:
-        print(f"INFO: Table already initialized and filled")
-
-
-
-#app.run()

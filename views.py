@@ -1,7 +1,6 @@
 import json
 
-from utils import get_users_all, get_user_by_id, get_orders_all, get_order_by_id, get_offers_all, get_offer_by_id, \
-    add_user, update_user, delete_user, add_order, update_order, delete_order, add_offer, update_offer, delete_offer
+from utils import *
 from flask import Blueprint, render_template, request, jsonify
 
 main_blueprint = Blueprint('main_blueprint', __name__, template_folder='templates')
@@ -14,6 +13,7 @@ def users_page():
         return json.dumps(get_users_all())
     elif request.method == 'POST':
         add_user(request.json)
+        return "", 200
 
 
 @main_blueprint.route("/users/<int:user_id>", methods=['GET', 'PUT', 'DELETE'])
