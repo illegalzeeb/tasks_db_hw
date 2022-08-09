@@ -8,6 +8,7 @@ app.config['DEBUG'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.register_blueprint(main_blueprint)
 db = SQLAlchemy(app)
+db.create_all()
 db.init_app(app)
 
 app.run()

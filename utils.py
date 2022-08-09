@@ -66,7 +66,7 @@ def get_user_by_id(user_id: int) -> dict:
     for user in users_data_queue:
         if user.get('id') == user_id:
             return User.query.get(user_id)
-    return "User does not exists"
+#    return "User does not exists"
 
 
 def get_orders_all() -> list[dict]:
@@ -87,7 +87,7 @@ def get_order_by_id(order_id: int) -> dict:
     for order in orders_data_queue:
         if order.get('id') == order_id:
             return Order.query.get(order_id)
-    return "Order does not exists"
+#    return "Order does not exists"
 
 
 def get_offers_all() -> list[dict]:
@@ -108,7 +108,7 @@ def get_offer_by_id(offer_id: int) -> dict:
     for offer in offers_data_queue:
         if offer.get('id') == offer_id:
             return Offer.query.get(offer_id)
-    return "Offer does not exists"
+#    return "Offer does not exists"
 
 
 def delete_user(user_id: int):
@@ -125,7 +125,7 @@ def update_user(user_data_queue: dict, user_id: int)
     Обновляет данные пользователя
     """
     user = get_user_by_id(user_id)
-    user.id = user_data_queue["id"]
+#    user.id = user_data_queue["id"]
     user.first_name = user_data_queue["first_name"]
     user.last_name = user_data_queue["last_name"]
     user.age = user_data_queue["age"]
@@ -150,7 +150,7 @@ def update_order(order_data_queue: dict, order_id: int)
     Обновляет данные по заказу
     """
     order = get_order_by_id(order_id)
-    order.id = order_data_queue["id"]
+#    order.id = order_data_queue["id"]
     order.name = order_data_queue["name"]
     order.description = order_data_queue["description"]
     order.start_date = order_data_queue["start_date"]
@@ -176,7 +176,7 @@ def update_offer(offer_data_queue: dict, offer_id: int)
     Обновляет предложение
     """
     offer = get_offer_by_id(offer_id)
-    offer.id = offer_data_queue["id"]
+#    offer.id = offer_data_queue["id"]
     offer.order_id = offer_data_queue["order_id"]
     offer.executor_id = offer_data_queue["executor_id"]
     db.session.commit()
